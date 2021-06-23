@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm"
+import { ErrorHandler } from "../classes/ErrorHandler";
 import { UsersRepositories } from "../repositories/UsersRepositories"
 
 interface IUserRequest{
@@ -13,7 +14,25 @@ class CreateUserService{
         const usersRepository = getCustomRepository(UsersRepositories);
         //Verifica se o e-mail está preenchido, caso o contrario devolve o erro.
         if(!email){
-            throw new Error("Email incorrect");
+            const err = {
+                name: "EmailIncorrect",
+                statusCode: 409,
+                message: "Incorret Email",
+                description: "Email Incorrect, Please check email"
+            }
+
+            throw new ErrorHandler(err);
+        }
+        //Tag em branco
+        if (email === " ") {
+            const err = {
+                name: "EmailNameError",
+                statusCode: 417,
+                message: "Empty Field",
+                description: "Empty Field! This field cannot be empty"
+            }
+
+            throw new ErrorHandler(err);
         }
         //Consulta no BD se User já existe
         const userAlreadyExists = await usersRepository.findOne({
@@ -21,7 +40,14 @@ class CreateUserService{
         });
         // Se o usuário esiver cadastrado informa que o usuário já está cadastrado
         if (userAlreadyExists){
-            throw new Error ("User already exists");
+           //throw new Error("User already exists");
+            const err = {
+                name: "EmailAlreadyExists",
+                statusCode: 409,
+                message: "User already exists",
+                description: "Email exist, Please provide a new email"
+            }
+            throw new ErrorHandler(err)
         }
         //Cria o registro no BD
         const user = usersRepository.create({
