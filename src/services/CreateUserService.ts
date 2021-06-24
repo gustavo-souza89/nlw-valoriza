@@ -1,16 +1,18 @@
 import { getCustomRepository } from "typeorm"
 import { ErrorHandler } from "../classes/ErrorHandler";
 import { UsersRepositories } from "../repositories/UsersRepositories"
+import { hash } from "bcryptjs";
 
 interface IUserRequest{
     name: string;
     email: string;
-    admin?: boolean
+    admin?: boolean;
+    password: string;
 }
 
 class CreateUserService{
 
-    async execute({ name, email, admin }: IUserRequest){
+    async execute({ name, email, admin = false, password }: IUserRequest){
         const usersRepository = getCustomRepository(UsersRepositories);
         //Verifica se o e-mail está preenchido, caso o contrario devolve o erro.
         if(!email){
@@ -49,12 +51,17 @@ class CreateUserService{
             }
             throw new ErrorHandler(err)
         }
+        //Criptografando o campo password
+        const passwordHash = await hash(password, 8)
+
         //Cria o registro no BD
         const user = usersRepository.create({
             name,
             email,
-            admin
-        });
+            admin,
+            password: passwordHash,
+        });      
+
         //Salva a o registro no BD
         await usersRepository.save(user);
         // Retorna para os dados cadastrados

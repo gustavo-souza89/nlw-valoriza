@@ -14,13 +14,14 @@ app.use(router);
 //Middlewares - Tratando as exceções dos Services
 app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
+       console.log(err);
         if (err instanceof ErrorHandler) {
             const { name, statusCode, message, description } = err
 
             return response.status(statusCode).json({ name, message, description })
 
         }
-
+  console.log(err);
         return response.status(500).json({
             status: "error",
             message: "Internal Server Error"
