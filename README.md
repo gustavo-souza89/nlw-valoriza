@@ -32,8 +32,13 @@
   - Regras
 
     [x] Classe de Erro - Falta Otimizar
+
     [X] E-mail Fake quando o user recebe um elogio/notificação
+
     [ ] Colocar em produção Ex: Ferramenta Hiroko
+
     [ ] Criar seu Front-End caso você tenha conhecimento. (Blibioteca Cors e tipagens(Liberar acesso externo a seu API))
+
     [ ] Arquitetura Solid
+
     [ ] Usar o banco PostGres
