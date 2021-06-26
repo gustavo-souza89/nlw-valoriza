@@ -37,7 +37,7 @@
 
     [X] Altera banco de dados do SQLite para Postgres
 
-    [ ] Colocar em produção Ex: Ferramenta Hiroko
+    [X] Colocar em produção Ex: Ferramenta Hiroko
 
     [ ] Criar seu Front-End caso você tenha conhecimento. (Blibioteca Cors e tipagens(Liberar acesso externo a seu API))
 
