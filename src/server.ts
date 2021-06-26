@@ -1,11 +1,12 @@
 import "reflect-metadata";
+import dotenv from "dotenv";
 import express, { Request, Response, NextFunction } from 'express';
 import "express-async-errors";
 import { router } from "./routes";
 import "./database";
 import { ErrorHandler } from "./classes/ErrorHandler";
 
-
+dotenv.config();
 const app = express();
 
 app.use(express.json());
@@ -29,4 +30,4 @@ app.use(
     }
 );
 
-app.listen(3000, () => console.log('Server is started on port 3000! '));
+app.listen(process.env.PORT || 3000, () => console.log('Server is started on port 3000! '));
