@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --inspect --ignore-watch node_modules src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-    "start-heroku": "node dist/server.js"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
