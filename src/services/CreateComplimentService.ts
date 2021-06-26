@@ -2,6 +2,8 @@ import { getCustomRepository } from "typeorm"
 import { ErrorHandler } from "../classes/ErrorHandler";
 import { ComplimentsRepositories } from "../repositories/ComplimentsRepositories"
 import { UsersRepositories } from "../repositories/UsersRepositories";
+import nodemailer from 'nodemailer';
+import { TagsRepositories } from "../repositories/TagsRepositories";
 
 
 
@@ -54,7 +56,33 @@ class CreateComplimentService{
         });
         
         await complimentsRepositories.save(compliment);
-        
+
+        //envia e-mail para o cliente
+        //método para enviar e e-mail utilizando https://mailtrap.io/ + nodemailer
+         const sendNodeMailer = nodemailer.createTransport({
+                host: "smtp.mailtrap.io",
+                port: 2525,
+                    auth: {
+                        user: "a8d655a48f27e7",
+                        pass: "2fc3414529b8d9"
+                    }
+            })
+            const tagRepositories = getCustomRepository(TagsRepositories);
+            const tag = await tagRepositories.findOne(tag_id);
+            sendNodeMailer.sendMail({
+                from: 'Webmaster <9938cbcb7c-86554d@inbox.mailtrap.io> ',
+                to: userReceiverExists.email,
+                subject: 'Você recebeu um Elogio!',
+                html: `<p> Sua nova tag <b>${tag.name}<b/> veio com uma bela mensagem <b>${compliment.message}<b/> `                
+            }).then(
+                () => {
+                    console.log('E-mail Enviado')
+                }
+            ).catch(
+                () => {
+                    console.log("Email Não Enviado")
+                }
+            )        
         return compliment;
 
     }

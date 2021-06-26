@@ -1,6 +1,10 @@
 # NLW Valoriza
 
-## Regras
+## Ferramentas Utilizadas
+
+## Bibliotecas Utilizadas
+
+## Regras de Negócio
 
 - Cadastro de usuário
 
@@ -17,8 +21,19 @@
 
 - Cadastro de elogios
 
-  [ ] Não é permitido um usuário cadastrar um elogio para si mesmo.
+  [X] Não é permitido um usuário cadastrar um elogio para si mesmo.
 
-  [ ] Não é permitido cadastrar elogio para usuários inválidos.
+  [X] Não é permitido cadastrar elogio para usuários inválidos.
 
-  [ ] O usuário precisa estar autenticado na aplicação.
+  [X] O usuário precisa estar autenticado na aplicação.
+
+  ## Milha Extra
+
+  - Regras
+
+    [x] Classe de Erro - Falta Otimizar
+    [X] E-mail Fake quando o user recebe um elogio/notificação
+    [ ] Colocar em produção Ex: Ferramenta Hiroko
+    [ ] Criar seu Front-End caso você tenha conhecimento. (Blibioteca Cors e tipagens(Liberar acesso externo a seu API))
+    [ ] Arquitetura Solid
+    [ ] Usar o banco PostGres
