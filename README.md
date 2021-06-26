@@ -31,14 +31,14 @@
 
   - Regras
 
-    [x] Classe de Erro - Falta Otimizar
+    [X] Classe de Erro - Falta Otimizar
 
     [X] E-mail Fake quando o user recebe um elogio/notificação
+
+    [X] Altera banco de dados do SQLite para Postgres
 
     [ ] Colocar em produção Ex: Ferramenta Hiroko
 
     [ ] Criar seu Front-End caso você tenha conhecimento. (Blibioteca Cors e tipagens(Liberar acesso externo a seu API))
 
     [ ] Arquitetura Solid
-
-    [ ] Usar o banco PostGres
