@@ -6,7 +6,6 @@ import { router } from "./routes";
 import "./database";
 import { ErrorHandler } from "./classes/ErrorHandler";
 
-
 const app = express();
 
 app.use(express.json());
